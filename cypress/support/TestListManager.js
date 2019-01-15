@@ -9,7 +9,7 @@ const train = require('../tests/Train')
 const log = require('../tests/Log')
 const editAndBranching = require('../tests/EditAndBranching')
 const deleteAllTestGeneratedModels = require('../tests/DeleteAllTestGeneratedModels')
-const helpers = require('./Helpers')
+import * as helpers from './Helpers'
 
 // ************ MODIFY THIS LIST *****************************************
 // This is the list of tests that will be executed when "RunTestsFromList"

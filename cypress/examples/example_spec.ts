@@ -697,7 +697,7 @@ describe('Kitchen Sink', function () {
         cy.get('.assertions-p').find('p')
         .should(function ($p) {
           // return an array of texts from all of the p's
-          let texts = $p.map(function (i, el) {
+          let texts: any = $p.map(function (i, el) {
             // https://on.cypress.io/$
             return Cypress.$(el).text()
           })
@@ -978,7 +978,7 @@ describe('Kitchen Sink', function () {
       cy.wait('@postComment')
 
       // get the route
-      cy.get('@postComment').then(function (xhr) {
+      cy.get('@postComment').then(function (xhr: any) {
         expect(xhr.requestBody).to.include('email')
         expect(xhr.requestHeaders).to.have.property('Content-Type')
         expect(xhr.responseBody).to.have.property('name', 'Using POST in cy.route()')
@@ -1239,7 +1239,7 @@ describe('Kitchen Sink', function () {
       // https://on.cypress.io/stub
       cy.visit('https://example.cypress.io/commands/spies-stubs-clocks')
 
-      let obj = {
+      let obj: any = {
         foo () {},
       }
 
@@ -1308,7 +1308,7 @@ describe('Kitchen Sink', function () {
     it('Cypress.moment() - format or parse dates using a moment method', function () {
       // use moment's format function
       // https://on.cypress.io/cypress-moment
-      let time = Cypress.moment().utc('2014-04-25T19:38:53.196Z').format('h:mm A')
+      let time = Cypress.moment('2014-04-25T19:38:53.196Z').utc().format('h:mm A')
 
       cy.get('.utility-moment').contains('3:38 PM')
         .should('have.class', 'badge')

@@ -8,7 +8,7 @@ const models = require('../support/Models')
 const modelPage = require('../support/components/ModelPage')
 const logDialogsGrid = require('../support/components/LogDialogsGrid')
 const logDialogModal = require('../support/components/LogDialogModal')
-const helpers = require('../support/Helpers')
+import * as helpers from '../support/Helpers'
 
 export function WhatsYourName()
 {

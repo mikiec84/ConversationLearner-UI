@@ -3,19 +3,19 @@
  * Licensed under the MIT License.
 */
 
-export function Sleep(time) { return new Promise((resolve, reject) => setTimeout(resolve, time))}
+export function Sleep(time: number) { return new Promise((resolve, reject) => setTimeout(resolve, time))}
 
 // NOTE: the '-+-' is a signature for filtering console output
-export function ConLog(funcName, message) { console.log(`-+- ${Cypress.moment().format("HH:mm:ss..SSS")} - ${funcName} - ${message}`) }
+export function ConLog(funcName: string, message: string) { console.log(`-+- ${Cypress.moment().format("HH:mm:ss..SSS")} - ${funcName} - ${message}`) }
 
-export function Dump(funcName, object)
+export function Dump(funcName: string, object: any)
 {
   var propertyList = ''
   for(var property in object) propertyList += `${(propertyList.length == 0 ? '' : ', ')}${property}: ${object[property]}`
   ConLog(funcName, propertyList)
 }
 
-export function RemoveDuplicates(inputArray)
+export function RemoveDuplicates(inputArray: any[])
 {
   var uniqueOutputArray = []
   for(var i = 0; i < inputArray.length; i++)
@@ -25,7 +25,7 @@ export function RemoveDuplicates(inputArray)
   return uniqueOutputArray
 }
 
-export function RemoveMarkup(stringWithHtml)
+export function RemoveMarkup(stringWithHtml: string)
 {
   var tempDocument = document.createElement("div")
   tempDocument.innerHTML = stringWithHtml
@@ -35,10 +35,10 @@ export function RemoveMarkup(stringWithHtml)
   return stringToReturn
 }
 
-export function StringArrayFromInnerHtml(selector, removeMarkup = true) 
+export function StringArrayFromInnerHtml(selector: string, removeMarkup = true) 
 { 
   var elements = Cypress.$(selector)
-  ConLog(`StringArrayFromInnerHtml(${selector})`, elements.length)
+  ConLog(`StringArrayFromInnerHtml(${selector})`, elements.length.toString())
   var returnValues = new Array()
   for (var i = 0; i < elements.length; i++) 
   { 
@@ -49,7 +49,7 @@ export function StringArrayFromInnerHtml(selector, removeMarkup = true)
   return returnValues
 }
 
-export function NumericArrayFromInnerHtml(selector) 
+export function NumericArrayFromInnerHtml(selector: string) 
 { 
   var elements = Cypress.$(selector)
   var returnValues = new Array()
@@ -57,7 +57,7 @@ export function NumericArrayFromInnerHtml(selector)
   return returnValues
 }
 
-export function Moment(dateTime)
+export function Moment(dateTime: string)
 {
   if (dateTime.includes('/'))
   {

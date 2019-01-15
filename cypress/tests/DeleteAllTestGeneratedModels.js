@@ -4,7 +4,7 @@
 */
 
 const homePage = require('../support/components/HomePage')
-const helpers = require('../support/Helpers')
+import * as helpers from '../support/Helpers'
 
 export function DeleteAllTestGeneratedModels() 
 {

@@ -8,7 +8,7 @@
  * cy.route() commands used only for waiting. It does this by constantly monitoring the
  * DOM for changes and tracking the Milliseconds Since the Last Change and also resetting
  * those Milliseconds to zero when we see the spinner is displayed. Certain cy.commands(),
- * such as cy.Get(), are then modified to prevent execution until this Millisecond count
+ * such as cy.get(), are then modified to prevent execution until this Millisecond count
  * reaches at least 700.
  * 
  * The basic premis this works on is that when the application under test is making API
@@ -18,7 +18,7 @@
  * within 700 milliseconds since the last change, or another one occures to reset the count.
 */
 
-const helpers = require('./Helpers.js')
+import * as helpers from './Helpers'
 
 var MonitorDocumentChanges = (function()
 {
@@ -60,10 +60,10 @@ var MonitorDocumentChanges = (function()
 
     Cypress.Commands.add('Get', (selector, options) => 
     {   
-      helpers.ConLog(`cy.Get(${selector})`, `Start - Last DOM change was ${MillisecondsSinceLastChange()} milliseconds ago - Selector: \n${selector}`)
+      helpers.ConLog(`cy.get(${selector})`, `Start - Last DOM change was ${MillisecondsSinceLastChange()} milliseconds ago - Selector: \n${selector}`)
       cy.wrap(700, {timeout: 60000}).should('lte', 'MillisecondsSinceLastChange').then(() => 
       {
-        helpers.ConLog(`cy.Get(${selector})`, `DOM Is Stable`)
+        helpers.ConLog(`cy.get(${selector})`, `DOM Is Stable`)
         cy.get(selector, options)
       })
     })

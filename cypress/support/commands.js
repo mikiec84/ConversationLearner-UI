@@ -1,6 +1,5 @@
 import { createPartiallyEmittedExpression } from "typescript";
-import './Helpers'
-const helpers = require('./Helpers.js')
+import * as helpers from './Helpers'
 const modelPage = require('./components/ModelPage')
 const train = require('../support/Train')
 

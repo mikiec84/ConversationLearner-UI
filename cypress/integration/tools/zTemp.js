@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
 */
 
-const helpers = require('../../support/Helpers')
+import * as helpers from '../../support/Helpers'
 const homePage = require('../../support/components/HomePage')
 const modelPage = require('../../support/components/ModelPage')
 const train = require('../../support/Train')

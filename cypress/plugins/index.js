@@ -12,6 +12,8 @@
 // the project's config changing)
 const path = require('path')
 
+const wp = require('@cypress/webpack-preprocessor')
+
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
@@ -31,4 +33,9 @@ module.exports = (on, config) => {
       return path.parse(path.normalize(filePath))
     }
   })
+
+  const options = {
+    webpackOptions: require('./webpack.config'),
+  }
+  on('file:preprocessor', wp(options))
 }
