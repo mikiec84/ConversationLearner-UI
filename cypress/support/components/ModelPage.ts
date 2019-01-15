@@ -3,22 +3,22 @@
  * Licensed under the MIT License.
  */
 
-const entitiesGrid = require('../../support/components/EntitiesGrid')
-const actionsGrid  = require('../../support/components/ActionsGrid')
-const trainDialogsGrid = require('./TrainDialogsGrid')
-const logDialogsGrid = require('../../support/components/LogDialogsGrid')
-const settings = require('../../support/components/Settings')
+import * as entitiesGrid from './EntitiesGrid'
+import * as actionsGrid from './ActionsGrid'
+import * as trainDialogsGrid from './TrainDialogsGrid'
+import * as logDialogsGrid from './LogDialogsGrid'
+import * as settings from './Settings'
  
-export function VerifyModelName(name)     { cy.get('[data-testid="app-index-model-name"]').should(el => { expect(el).to.contain(name) })}
+export function VerifyModelName(name: string)     { cy.get('[data-testid="app-index-model-name"]').should(el => { expect(el).to.contain(name) })}
 export function VerifyPageTitle()         { cy.get('[data-testid="dashboard-title"]').contains('Log Dialogs').should('be.visible') }
 
-export function NavigateToHome()          { cy.get('[data-testid="app-index-nav-link-home"]').Click();          VerifyPageTitle() }
-export function NavigateToEntities()      { cy.get('[data-testid="app-index-nav-link-entities"]').Click();      entitiesGrid.VerifyPageTitle() }
-export function NavigateToActions()       { cy.get('[data-testid="app-index-nav-link-actions"]').Click();       actionsGrid.VerifyPageTitle() }
-export function NavigateToTrainDialogs()  { cy.get('[data-testid="app-index-nav-link-train-dialogs"]').Click(); trainDialogsGrid.VerifyPageTitle() }
-export function NavigateToLogDialogs()    { cy.get('[data-testid="app-index-nav-link-log-dialogs"]').Click();   logDialogsGrid.VerifyPageTitle() }
-export function NavigateToSettings()      { cy.get('[data-testid="app-index-nav-link-settings"]').Click();      settings.VerifyPageTitle() }
-export function VerifyNoErrorIconOnPage() { cy.DoesNotContain('i[data-icon-name="IncidentTriangle"].cl-color-error') }
+export function NavigateToHome()          { cy.get('[data-testid="app-index-nav-link-home"]').click();          VerifyPageTitle() }
+export function NavigateToEntities()      { cy.get('[data-testid="app-index-nav-link-entities"]').click();      entitiesGrid.VerifyPageTitle() }
+export function NavigateToActions()       { cy.get('[data-testid="app-index-nav-link-actions"]').click();       actionsGrid.VerifyPageTitle() }
+export function NavigateToTrainDialogs()  { cy.get('[data-testid="app-index-nav-link-train-dialogs"]').click(); trainDialogsGrid.VerifyPageTitle() }
+export function NavigateToLogDialogs()    { cy.get('[data-testid="app-index-nav-link-log-dialogs"]').click();   logDialogsGrid.VerifyPageTitle() }
+export function NavigateToSettings()      { cy.get('[data-testid="app-index-nav-link-settings"]').click();      settings.VerifyPageTitle() }
+export function VerifyNoErrorIconOnPage() { (cy as any).DoesNotContain('i[data-icon-name="IncidentTriangle"].cl-color-error') }
 
 // For the Left Pane "Train Dialogs" link.
 export function VerifyErrorIconForTrainDialogs() { cy.get('[data-testid="app-index-nav-link-train-dialogs"]').find('i[data-icon-name="IncidentTriangle"].cl-color-error') }
@@ -44,7 +44,7 @@ export function WaitForTrainingStatusCompleted()
   
     // The reason we need to call this method once again using cy.WaitForTrainingStatusCompleted()
     // is because the .click() function causes the time out to change to a default of 4 seconds
-    cy.WaitForTrainingStatusCompleted()
+    ;(cy as any).WaitForTrainingStatusCompleted()
   }
   expect(currentHtml.includes('data-testid="training-status-completed"')).to.equal(true)
 }

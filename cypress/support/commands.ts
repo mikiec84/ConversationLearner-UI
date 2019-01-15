@@ -1,7 +1,7 @@
 import { createPartiallyEmittedExpression } from "typescript";
 import * as helpers from './Helpers'
-const modelPage = require('./components/ModelPage')
-const train = require('../support/Train')
+import * as modelPage from './components/ModelPage'
+import * as train from './Train'
 
 // **********************************************************************************************
 // OTHER cy.* COMMANDS are defined in MonitorDocumentChanges.js
@@ -36,10 +36,20 @@ const train = require('../support/Train')
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("ConLog", (funcName, message) => {helpers.ConLog(funcName, message)})
+declare namespace Cypress {
+  interface Chainable {
+    ConLog: typeof conLog;
+    UploadFile: typeof UploadFile;
+  }
+}
+
+const conLog = (funcName: string, message: string) => {
+  helpers.ConLog(funcName, message)
+}
+Cypress.Commands.add("ConLog", conLog)
 
 // fileName must exist with cypress\fixtures folder
-Cypress.Commands.add('UploadFile', (fileName, selector) => 
+const UploadFile = (fileName: string, selector: string) => 
 {
   cy.get(selector).then(elements => 
   {
@@ -49,11 +59,14 @@ Cypress.Commands.add('UploadFile', (fileName, selector) =>
       const testFile = new File([content], fileName)
       const dataTransfer = new DataTransfer()
 
-      dataTransfer.items.add(testFile)
-      element.files = dataTransfer.files
+      dataTransfer.items.add(testFile);
+      (element as any).files = dataTransfer.files
     })
   })
-})
+}
+
+Cypress.Commands.add('UploadFile', UploadFile)
+
 
 // This function operates similar to the "cy.contains" command except that it expects
 // the text content of the elements to contain an EXACT MATCH to the expected text.

@@ -5,7 +5,7 @@
 
 // When an entity is detected/selected that replaces a previous value
 // the "displacedValue" parameter will verify it is displayed.
-export function VerifyEntityInMemory(entityName, entityValues, displacedValue)
+export function VerifyEntityInMemory(entityName: string, entityValues: string | string[], displacedValue: string)
 {
   cy.get('[data-testid="entity-memory-name"]').contains(entityName)
 

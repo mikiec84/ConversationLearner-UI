@@ -3,6 +3,6 @@
  * Licensed under the MIT License.
 */
 
-const deleteAllTestGeneratedModels = require('../../tests/DeleteAllTestGeneratedModels')
+import * as deleteAllTestGeneratedModels from '../../tests/DeleteAllTestGeneratedModels'
 
 describe('Tools', () => { it('Delete All Test Generated Models', deleteAllTestGeneratedModels.DeleteAllTestGeneratedModels) })

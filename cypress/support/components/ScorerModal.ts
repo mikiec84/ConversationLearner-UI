@@ -3,22 +3,21 @@
  * Licensed under the MIT License.
  */
 
-import * as helpers from '../../support/Helpers'
 
 // data-testid="teach-session-admin-train-status" (Running, Completed, Failed)
-export function ClickRefreshScoreButton()       { cy.get('[data-testid="teach-session-admin-refresh-score-button"]').Click() }
-export function SelectAnAction()                { cy.get('[data-testid="action-scorer-button-clickable"]').should("be.visible").Click() }
-export function ClickAddActionButton()          { cy.get('[data-testid="action-scorer-add-action-button"]').Click() }
+export function ClickRefreshScoreButton()       { cy.get('[data-testid="teach-session-admin-refresh-score-button"]').click() }
+export function SelectAnAction()                { cy.get('[data-testid="action-scorer-button-clickable"]').should("be.visible").click() }
+export function ClickAddActionButton()          { cy.get('[data-testid="action-scorer-add-action-button"]').click() }
 
-export function ClickAction(expectedResponse)
+export function ClickAction(expectedResponse: string)
 {
-  cy.get('[data-testid="action-scorer-text-response"]').ExactMatch(expectedResponse)
+  ;(cy.get('[data-testid="action-scorer-text-response"]') as any).ExactMatch(expectedResponse)
     .parents('div.ms-DetailsRow-fields').find('[data-testid="action-scorer-button-clickable"]')
-    .Click()
+    .click()
   VerifyLastChatMessage(expectedResponse)
 }
 
-export function VerifyLastChatMessage(expectedMessage)
+export function VerifyLastChatMessage(expectedMessage: string)
 {
   var expectedUtterance = expectedMessage.replace(/'/g, "’")
 
@@ -28,21 +27,21 @@ export function VerifyLastChatMessage(expectedMessage)
     })})
 }
 
-export function VerifyContainsEnabledAction(expectedResponse)
+export function VerifyContainsEnabledAction(expectedResponse: string)
 {
     cy.get('[data-testid="action-scorer-text-response"]').contains(expectedResponse)
     .parents('div.ms-DetailsRow-fields').find('[data-testid="action-scorer-button-clickable"]')
     .should('be.enabled')
 }
 
-export function VerifyContainsDisabledAction(expectedResponse)
+export function VerifyContainsDisabledAction(expectedResponse: string)
 {
     cy.get('[data-testid="action-scorer-text-response"]').contains(expectedResponse)
     .parents('div.ms-DetailsRow-fields').find('[data-testid="action-scorer-button-no-click"]')
     .should('be.disabled')
 }
 
-export function VerifyEntityInMemory(entityName, entityValue)
+export function VerifyEntityInMemory(entityName: string, entityValue: string)
 {
   cy.get('[data-testid="entity-memory-name"]').contains(entityName)
   cy.get('[data-testid="entity-memory-value"]').contains(entityValue)

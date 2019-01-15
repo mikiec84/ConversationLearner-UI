@@ -3,12 +3,12 @@
  * Licensed under the MIT License.
 */
 
-const tools = require('../tests/Tools')
-const createModels = require('../tests/CreateModels')
-const train = require('../tests/Train')
-const log = require('../tests/Log')
-const editAndBranching = require('../tests/EditAndBranching')
-const deleteAllTestGeneratedModels = require('../tests/DeleteAllTestGeneratedModels')
+import * as tools from '../tests/Tools'
+import * as createModels from '../tests/CreateModels'
+import * as train from '../tests/Train'
+import * as log from '../tests/Log'
+import * as editAndBranching from '../tests/EditAndBranching'
+import * as deleteAllTestGeneratedModels from '../tests/DeleteAllTestGeneratedModels'
 import * as helpers from './Helpers'
 
 // ************ MODIFY THIS LIST *****************************************

@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
 */
 
-const homePage = require('../support/components/HomePage')
+import * as homePage from '../support/components/HomePage'
 import * as helpers from '../support/Helpers'
 
 export function DeleteAllTestGeneratedModels() 

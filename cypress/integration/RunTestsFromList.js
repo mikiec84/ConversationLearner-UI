@@ -4,7 +4,7 @@
 */
 
 import * as helpers from '../support/Helpers'
-const testListManager = require('../support/TestListManager')
+import * as testListManager from '../support/TestListManager'
 
 // This will queue up all test cases found in the testList array.
 testListManager.AddToCypressTestList(testListManager.testList) 

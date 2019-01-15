@@ -70,10 +70,10 @@ var MonitorDocumentChanges = (function()
 
     Cypress.Commands.add('Contains', (selector, content, options) => 
     {   
-      helpers.ConLog(`cy.Contains()`, `Start - Last DOM change was ${MillisecondsSinceLastChange()} milliseconds ago - Selector -- Content: \n${selector} -- ${content}`)
+      helpers.ConLog(`cy.contains()`, `Start - Last DOM change was ${MillisecondsSinceLastChange()} milliseconds ago - Selector -- Content: \n${selector} -- ${content}`)
       cy.wrap(700, {timeout: 60000}).should('lte', 'MillisecondsSinceLastChange').then(() => 
       {
-        helpers.ConLog(`cy.Contains()`, `DOM Is Stable`)
+        helpers.ConLog(`cy.contains()`, `DOM Is Stable`)
         cy.contains(selector, content, options)
       })
     })
@@ -118,12 +118,12 @@ var MonitorDocumentChanges = (function()
 
     Cypress.Commands.add('Click', { prevSubject: true, element: true}, (subject) => 
     {
-      helpers.ConLog(`cy.Click()`, `Start - Last DOM change was ${MillisecondsSinceLastChange()} milliseconds ago`)
+      helpers.ConLog(`cy.click()`, `Start - Last DOM change was ${MillisecondsSinceLastChange()} milliseconds ago`)
       lastChangeTime = new Date().getTime()
       cy.wrap(subject).click()
         .then(()=> 
         {
-          helpers.ConLog(`cy.Click()`, `done - Last DOM change was ${MillisecondsSinceLastChange()} milliseconds ago`)
+          helpers.ConLog(`cy.click()`, `done - Last DOM change was ${MillisecondsSinceLastChange()} milliseconds ago`)
           lastChangeTime = new Date().getTime()
         })
     })

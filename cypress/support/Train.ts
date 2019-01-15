@@ -3,15 +3,15 @@
  * Licensed under the MIT License.
  */
 
-const scorerModal = require('./components/ScorerModal')
-const trainDialogsGrid = require('./components/TrainDialogsGrid')
-const editDialogModal = require('./components/EditDialogModal')
+import * as scorerModal from './components/ScorerModal'
+import * as trainDialogsGrid from './components/TrainDialogsGrid'
+import * as editDialogModal from './components/EditDialogModal'
 import * as helpers from './Helpers'
 
 function Today() { return Cypress.moment().format("MM/DD/YYYY") }
 
 // Workaround: to get true global data it must be attached to the window object.
-window.currentTrainingSummary = undefined
+(window as any).currentTrainingSummary = undefined
 
 export function CreateNewTrainDialog()
 {
@@ -276,7 +276,7 @@ export function SelectAndVerifyEachChatTurn(index = 0)
   {
     if (index < elements.length)
     {
-      cy.wrap(elements[index]).Click().then(() =>
+      cy.wrap(elements[index]).click().then(() =>
       {
         editDialogModal.VerifyChatTurnControls(elements[index], index)
         SelectAndVerifyEachChatTurn(index + 1)

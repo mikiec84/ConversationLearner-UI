@@ -7,13 +7,13 @@ import * as helpers from '../Helpers'
 
 // Path to product code: ConversationLearner-UI\src\routes\Apps\App\TrainDialogs.tsx
 export function VerifyPageTitle()                 { cy.get('[data-testid="train-dialogs-title"]').contains('Train Dialogs').should('be.visible') }
-export function CreateNewTrainDialog()            { cy.get('[data-testid="button-new-train-dialog"]').Click()}
+export function CreateNewTrainDialog()            { cy.get('[data-testid="button-new-train-dialog"]').click()}
 export function SearchBox()                       { cy.get('label[for="traindialogs-input-search"]').contains('input.ms-SearchBox-field') }
 export function EntityDropDownFilter()            { cy.get('[data-testid="dropdown-filter-by-entity"]')}
 export function ActionDropDownFilter()            { cy.get('[data-testid="dropdown-filter-by-action"]')}
-export function ClickTraining(row)                { cy.get('[data-testid="train-dialogs-first-input"]').then(elements => { cy.wrap(elements[row]).Click() })}
+export function ClickTraining(row: number)                { cy.get('[data-testid="train-dialogs-first-input"]').then(elements => { cy.wrap(elements[row]).click() })}
 
-export function WaitForGridReadyThen(expectedRowCount, functionToRunAfterGridIsReady)  
+export function WaitForGridReadyThen(expectedRowCount: number, functionToRunAfterGridIsReady: Function)  
 { 
   cy.get('[data-testid="train-dialogs-turns"]')
     .should(elements => { expect(elements).to.have.length(expectedRowCount) })
@@ -28,4 +28,4 @@ export function GetTurns()                        { return helpers.NumericArrayF
 export function GetLastModifiedDates()            { return helpers.StringArrayFromInnerHtml('[data-testid="train-dialogs-last-modified"]')}
 export function GetCreatedDates()                 { return helpers.StringArrayFromInnerHtml('[data-testid="train-dialogs-created"]')}
 
-export function VerifyErrorIconForTrainGridRow(rowIndex) { cy.get(`div.ms-List-cell[data-list-index="${rowIndex}"]`).find('i[data-icon-name="IncidentTriangle"].cl-color-error') }
+export function VerifyErrorIconForTrainGridRow(rowIndex: number) { cy.get(`div.ms-List-cell[data-list-index="${rowIndex}"]`).find('i[data-icon-name="IncidentTriangle"].cl-color-error') }

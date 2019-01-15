@@ -4,5 +4,5 @@
  */
 
 export function VerifyPageTitle()       { cy.get('[data-testid="entities-title"]').contains('Entities').should('be.visible') }
-export function ClickButtonNewEntity()  { cy.get('[data-testid="entities-button-create"]').Click() }
-export function VerifyItemInList(name)  { cy.get('.ms-DetailsRow-cell').should('contain', name) }
+export function ClickButtonNewEntity()  { cy.get('[data-testid="entities-button-create"]').click() }
+export function VerifyItemInList(name: string)  { cy.get('.ms-DetailsRow-cell').should('contain', name) }
