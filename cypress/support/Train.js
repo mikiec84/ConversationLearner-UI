@@ -261,3 +261,38 @@ export function AbandonDialog() {
   editDialogModal.ClickAbandonDeleteButton()
   editDialogModal.ClickConfirmAbandonDialogButton()
 }
+
+export function EditTrainingNEW(tags, scenario) {
+  cy.Enqueue(() => {
+    let tagsFromGrid = trainDialogsGrid.GetTags()
+    let scenarios = trainDialogsGrid.GetScenarios()
+
+    helpers.ConLog(`EditTraining(${tags}, ${scenario}, ${lastResponse})`, `${turns.length}, ${lastInputs[0]}, ${lastInputs[1]}, ${lastInputs[2]}`)
+
+    for (var i = 0; i < firstInputs.length; i++) {
+      if (firstInputs[i] == tags && lastInputs[i] == scenario && lastResponses[i] == lastResponse) {
+        window.currentTrainingSummary =
+          {
+            FirstInput: firstInputs[i],
+            LastInput: lastInputs[i],
+            LastResponse: lastResponses[i],
+            Turns: turns[i],
+            // FUDGING on the time - subtract 25 seconds because the time is set by the server
+            // which is not exactly the same as our test machine.
+            MomentTrainingStarted: Cypress.moment().subtract(25, 'seconds'),
+            MomentTrainingEnded: undefined,
+            LastModifiedDate: lastModifiedDates[i],
+            CreatedDate: createdDates[i],
+            TrainGridRowCount: (turns ? turns.length : 0)
+          }
+        window.originalTrainingSummary = Object.create(window.currentTrainingSummary)
+        window.isBranched = false
+
+        helpers.ConLog(`EditTraining(${tags}, ${scenario}, ${lastResponse})`, `ClickTraining for ${i} - ${turns[i]}, ${firstInputs[i]}, ${lastInputs[i]}, ${lastResponses[i]}`)
+        trainDialogsGrid.ClickTraining(i)
+        return
+      }
+    }
+    throw `Can't Find Training to Edit. The grid should, but does not, contain a row with this data in it: FirstInput: ${tags} -- LastInput: ${scenario} -- LastResponse: ${lastResponse}`
+  })
+}

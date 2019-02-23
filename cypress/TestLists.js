@@ -15,6 +15,7 @@ export const loopCount = 100
 // is selected from the Cypress Test GUI.
 export const testList = [
   'Tools.CreateModel',  
+  'Tools.CreateModel2',  
 ]
 
 // ************ MODIFY THIS LIST *****************************************
@@ -66,6 +67,7 @@ export const masterListOfAllTestCases = [
   'Log.EndlessLoopX',
   'Tools.VisitHomePage',
   'Tools.CreateModel',
+  'Tools.CreateModel2',
   'Tools.VerifyDoesNotContainTestMethod',
   'Tools.DeleteAllTestGeneratedModels',
   'Train.DisqualifyingEntities',

@@ -24,6 +24,13 @@ export function CreateModel(name = 'z-model')
   VisitHomePage()
 }
 
+Cypress.TestCase('Tools', 'Create Model 2', CreateModel2)
+export function CreateModel2(name = 'z-model')
+{
+  models.CreateNewModel(name)
+  VisitHomePage()
+}
+
 // This is a test case to test one of our test methods, cy.DoesNotContain.
 // The problem with that method is that if it has a bug and does not find
 // the element we were expecting to not be on the page it passes, so this

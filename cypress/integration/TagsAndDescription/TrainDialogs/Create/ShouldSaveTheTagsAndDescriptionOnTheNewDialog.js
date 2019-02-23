@@ -8,16 +8,15 @@ const train = require('../../../../support/Train')
 
 export var testCompletedSuccessfully = false
 describe('Create', () => {
-  it('Should Have No Tags Nor Description When Creating New Dialog', () => {
-    models.CreateNewModel('z-testReorg')
-    modelPage.NavigateToTrainDialogs()
-    train.CreateNewTrainDialog()
+  it('Should Save The Tags And Description On The New Dialog', () => {
+    train.TypeYourMessage('Hi')
+    train.AbandonDialog()
     cy.Enqueue(() => {testCompletedSuccessfully = true})
   })
 })
 
-describe('Create', () => {
-  it('Just an extra test case to show how it looks', () => {
+describe('GroupX', () => {
+  it('Extra test case to show how it looks', () => {
     cy.log('Always Passes')
     expect(true).to.equal(true)
   })
