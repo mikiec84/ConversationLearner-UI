@@ -3,6 +3,14 @@
  * Licensed under the MIT License.
  */
 
+//if (Test) alert(`PersistentLogs.js1 - Test is ${(Test)? 'undefined' : 'defined'}`)
+
+global.Test = {}
+Test.globalTestObject = true
+
+//alert(`PersistentLogs.js2 - Test is ${Test == undefined? 'undefined' : 'defined'}`)
+
+
 var testCaseRegistry = []
 var indexRegistry = 0
 var logEntries = ''

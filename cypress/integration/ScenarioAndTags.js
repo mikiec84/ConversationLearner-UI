@@ -6,8 +6,8 @@ const modelPage = require('../support/components/ModelPage')
 const editDialogModal = require('../support/components/EditDialogModal')
 const train = require('../support/Train')
 
-describe('Training Scenario and Tags', () => {
-  context('Train Dialogs', () => {
+Test.Feature('Training Scenario and Tags', () => {
+  Test.Area('Train Dialogs', () => {
     before(() => {
       // import the saved model for tags and description testing
       models.ImportModel('z-TagAndScenario', 'z-whatsYourName.cl')
@@ -17,10 +17,8 @@ describe('Training Scenario and Tags', () => {
       // open model for tags and description testing
     })
 
-    context('Create', () => {
-      it('Should have no Scenario nor Tags when creating new dialog.', () => {
-        // Create new train dialog
-        // Verify that tags and description are empty
+    Test.Area('Create', () => {
+      Test.Stage('Should have no Scenario nor Tags when creating new dialog.', () => {
         modelPage.NavigateToTrainDialogs()
         //cy.WaitForTrainingStatusCompleted()
         train.CreateNewTrainDialog()
@@ -29,12 +27,7 @@ describe('Training Scenario and Tags', () => {
         editDialogModal.VerifyTags([])
       })
 
-      it('should save the tags and description on the new dialog', () => {
-        // Set tags
-        // Set description
-        // Save
-        // Verify tags and description in list
-        
+      Test.Stage('should save the tags and description on the new dialog', () => {
         editDialogModal.TypeScenario('Test Scenario')
         editDialogModal.AddTag('TagX')
 
@@ -47,25 +40,14 @@ describe('Training Scenario and Tags', () => {
       })
     })
 
-    context('Edit', () => {
-      it('should open with the tags and description', () => {
-        // Find train dialog in list
-        // Note the tags and description
-        // Open it
-        // Verify tags and description are the same as shown in the list
+    Test.Area('Edit', () => {
+      Test.Stage('should open with the tags and description', () => {
         train.EditTrainingNEW('TagX', 'Test Scenario')
         editDialogModal.VerifyScenario('Test Scenario')
         editDialogModal.VerifyTags(['TagX'])
       })
 
-      it('should discard the changes made to tags and description when abandoned', () => {
-        // Open train dialog
-        // Save current tags and description
-        // Edit tags
-        // Edit description
-        // Abandon changes
-        // Re-open dialog
-        // Verify tags and description are unmodified
+      Test.Stage('should discard the changes made to tags and description when abandoned', () => {
         editDialogModal.TypeScenario('Changed Test Scenario')
         editDialogModal.AddTag('TagY')
         train.AbandonDialog()
@@ -75,13 +57,7 @@ describe('Training Scenario and Tags', () => {
         editDialogModal.VerifyTags(['TagX'])
       })
 
-      it('should save the edited tags and description', () => {
-        // Open train dialog
-        // Edit tags
-        // Edit description
-        // Note tags and description
-        // reload
-        // Verify edited tags and description are still on dialog
+      Test.Stage('should save the edited tags and description', () => {
         editDialogModal.TypeScenario('Edited Test Scenario')
         editDialogModal.AddTag('TagY')
         train.Save()
@@ -91,7 +67,7 @@ describe('Training Scenario and Tags', () => {
         editDialogModal.VerifyTags(['TagX', 'TagY'])
       })
 
-      it('(advanced edit) should save the edited tags, description, and rounds', () => {
+      Test.Stage('(advanced edit) should save the edited tags, description, and rounds', () => {
         // Open train dialog
         // Edit tags
         // Edit description
@@ -106,8 +82,8 @@ describe('Training Scenario and Tags', () => {
     })
 
 
-    context('Continue', () => {
-      it('should preserve tags and description when continuing a dialog', () => {
+    Test.Area('Continue', () => {
+      Test.Stage('should preserve tags and description when continuing a dialog', () => {
         // Open train dialog
         // Edit the tags
         // Edit the description
@@ -119,8 +95,8 @@ describe('Training Scenario and Tags', () => {
       })
     })
 
-    context('Branch', () => {
-      it('should preserve tags and description after branching', () => {
+    Test.Area('Branch', () => {
+      Test.Stage('should preserve tags and description after branching', () => {
         // Open train dialog
         // Edit tags
         // Edit description
@@ -137,12 +113,12 @@ describe('Training Scenario and Tags', () => {
     })
   })
 
-  context('Log Dialogs', () => {
+  Test.Area('Log Dialogs', () => {
     before(() => {
       // import model for testing tags and description on log dialogs
     })
 
-    it('should not show tags or description fields on log dialogs', () => {
+    Test.Stage('should not show tags or description fields on log dialogs', () => {
       // Open log dialog
       // Verify that the tags and description fields do not show up
       // Enter into webchat to continue the dialog

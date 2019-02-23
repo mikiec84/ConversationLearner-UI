@@ -83,3 +83,4 @@ Cypress.Commands.add("Alert", message => { alert(message) })
 // This causes your JavaScript code to execute in the same time frame as all of cy.*commands*
 Cypress.Commands.add("Enqueue", functionToRun => { return functionToRun() })
 
+if (Cypress.PersistentLogs == undefined) throw 'Cypress.PersistentLogs == undefined'

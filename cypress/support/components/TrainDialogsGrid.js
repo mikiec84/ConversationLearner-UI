@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.  
  * Licensed under the MIT License.
  */
+/// <reference types="Cypress" />
 
 const helpers = require('../Helpers')
 
@@ -11,6 +12,8 @@ export function CreateNewTrainDialog() { cy.Get('[data-testid="button-new-train-
 export function SearchBox() { cy.Get('label[for="traindialogs-input-search"]').contains('input.ms-SearchBox-field') }
 export function EntityDropDownFilter() { cy.Get('[data-testid="dropdown-filter-by-entity"]') }
 export function ActionDropDownFilter() { cy.Get('[data-testid="dropdown-filter-by-action"]') }
+
+// TODO: Ask Matt why I can't click on this row???
 export function ClickTraining(row) { cy.Get('[data-testid="train-dialogs-tags"]').then(elements => { cy.wrap(elements[row]).Click() }) }
 
 export function WaitForGridReadyThen(expectedRowCount, functionToRunAfterGridIsReady) {
