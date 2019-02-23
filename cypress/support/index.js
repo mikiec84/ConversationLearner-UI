@@ -4,7 +4,7 @@
  */
 
 import './PersistentLogs'
-import './TestSpec'
+import './Test'
 import './MonitorDocumentChanges'
 import './commands'
 
