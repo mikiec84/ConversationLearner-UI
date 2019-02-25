@@ -1,5 +1,6 @@
 global.Test = {}
 Test.passed = true
+Test.stage = undefined
 
 Test.Feature = (feature, func) => {
   describe(feature, func)
@@ -11,11 +12,15 @@ Test.Area = (area, func) => {
 
 Test.Stage = (stage, func) => {
   it(stage, () => {
-    //expect(Test.passed).to.equal(true)
-    if (Test.passed) {
-      Test.passed = false
-      func()
-      cy.Enqueue(() => Test.passed = true)
+    if (!Test.passed) {
+      // This will always fail, we use it to get an acceptable output to display.
+      expect(`Previous test stage: '${Test.stage}'`).to.equal('Passed')
+    } else {
+
+    Test.passed = false
+    Test.stage = stage
+    func()
+    cy.Enqueue(() => Test.passed = true)
     }
   })
 }

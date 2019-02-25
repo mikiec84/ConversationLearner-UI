@@ -27,7 +27,7 @@ Test.Feature('Training Scenario and Tags', () => {
         editDialogModal.VerifyTags([])
       })
 
-      Test.Stage('should save the tags and description on the new dialog', () => {
+      Test.Stage('Should save the tags and description on the new dialog', () => {
         editDialogModal.TypeScenario('Test Scenario')
         editDialogModal.AddTag('TagX')
 
@@ -41,7 +41,7 @@ Test.Feature('Training Scenario and Tags', () => {
     })
 
     Test.Area('Edit', () => {
-      Test.Stage('should open with the tags and description', () => {
+      Test.Stage('Should open with the tags and description', () => {
         train.EditTrainingNEW('TagX', 'Test Scenario')
         editDialogModal.VerifyScenario('Test Scenario')
         editDialogModal.VerifyTags(['TagX'])
