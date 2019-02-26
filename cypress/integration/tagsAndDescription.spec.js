@@ -1,19 +1,7 @@
-// const models = require('../../../../support/Models')
-// const modelPage = require('../../../../support/components/ModelPage')
-// const entities = require('../support/Entities')
-// const actions = require('../support/Actions')
-// const actionsGrid = require('../support/components/ActionsGrid')
-// const editDialogModal = require('../support/components/EditDialogModal')
-// const train = require('../../../../support/Train')
-
 describe('Tags and Description', () => {
   context('Train Dialogs', () => {
     before(() => {
       // import the saved model for tags and description testing
-    })
-
-    beforeEach(() => {
-      // open model for tags and description testing
     })
 
     context('Create', () => {
