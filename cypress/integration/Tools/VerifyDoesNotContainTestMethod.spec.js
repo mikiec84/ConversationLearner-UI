@@ -18,9 +18,9 @@ describe('Tools', () => {
     modelPage.NavigateToTrainDialogs()
 
     train.EditTraining('My name is David.', 'My name is Susan.', 'Hello $name')
-    train.CaptureOriginalChatMessages()
+//train.CaptureOriginalChatMessages()
 
-    editDialogModal.SelectChatTurn('My name is Susan.')
+    editDialogModal.SelectChatTurnExactMatch('My name is Susan.')
     editDialogModal.VerifyCyDoesNotContainMethodWorksWithSpecialChatSelector()
 
     editDialogModal.ClickSaveCloseButton()

@@ -13,9 +13,21 @@ import * as editDialogModal from '../../support/components/EditDialogModal'
 
 describe('zTemp', () => {
   it('Temporary Experimental Test', () => {
-    homePage.Visit()
-    cy.WaitTillNChangesOccur(2)
-    homePage.GetModelListRowCount()
+    models.ImportModel('z-editContols', 'z-nameTrained.cl')
+    modelPage.NavigateToTrainDialogs()
+
+    train.EditTraining('My name is David.', 'My name is Susan.', 'Hello $name')
+    train.BranchChatTurn('My name is Susan.', 'My name is Joseph.')
+    editDialogModal.ClickScoreActionsButton('Hello $name')
+    //cy.DumpHtmlOnDomChange(true)
+    train.Save()
+    //cy.wait(10000)
+    //cy.DumpHtmlOnDomChange(false)
+
+    train.EditTraining('My name is David.', 'My name is Susan.', 'Hello $name')
+    train.BranchChatTurn('My name is Susan.', 'My name is Joseph.')
+    editDialogModal.ClickScoreActionsButton('Hello $name')
+    train.Save()
   })
 
   it.skip('Temporary Experimental Test', () => {

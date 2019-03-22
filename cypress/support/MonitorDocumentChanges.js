@@ -100,13 +100,15 @@ import * as helpers from './Helpers.js'
           elements = Cypress.$(elements).find(`:contains(${textItShouldNotContain})`)
           helpers.ConLog(funcName, `Found ${elements.length} containing text: ${textItShouldNotContain}`)
         }
-
-        if (elements.length > 0) {
-          if (expectFailure) return true;
-          throw `selector: "${selector}" & textItShouldNotContain: "${textItShouldNotContain}" was expected to be missing from the DOM, instead we found ${elements.length} instances of it.`
-        }
+        
+        helpers.ConLog(funcName, 'Validation Step...')
+        expect(elements.length).to.equal(0)
+        // if (elements.length > 0) {
+        //   if (expectFailure) return true;
+        //   throw `selector: "${selector}" & textItShouldNotContain: "${textItShouldNotContain}" was expected to be missing from the DOM, instead we found ${elements.length} instances of it.`
+        // }
         helpers.ConLog(funcName, `PASSED - Selector was NOT Found as Expected`)
-        if (expectFailure) return false;
+        // if (expectFailure) return false;
       })
     })
 
