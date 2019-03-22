@@ -19,15 +19,10 @@ describe('zTemp', () => {
     train.EditTraining('My name is David.', 'My name is Susan.', 'Hello $name')
     train.BranchChatTurn('My name is Susan.', 'My name is Joseph.')
     editDialogModal.ClickScoreActionsButton('Hello $name')
-    //cy.DumpHtmlOnDomChange(true)
+    cy.DumpHtmlOnDomChange(true)
     train.Save()
-    //cy.wait(10000)
-    //cy.DumpHtmlOnDomChange(false)
-
-    train.EditTraining('My name is David.', 'My name is Susan.', 'Hello $name')
-    train.BranchChatTurn('My name is Susan.', 'My name is Joseph.')
-    editDialogModal.ClickScoreActionsButton('Hello $name')
-    train.Save()
+    cy.wait(10000)
+    cy.DumpHtmlOnDomChange(false)
   })
 
   it.skip('Temporary Experimental Test', () => {
